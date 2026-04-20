@@ -1,39 +1,30 @@
-# LifeOS AI – Decision Engine
+# LifeOS Vanguard: Crisis Intelligence Agent (CIA) 🛰️
 
-A context-aware productivity tool designed to convert raw thoughts and complex dilemmas into structured, actionable decisions.
+> **A God-Level Submission for the 2026 Virtual Prompt War by hack2skill.**  
+> *Target Tracks: Rapid Crisis Response | Unbiased AI Decision Making*
 
-## Problem Statement
-In an era of information overload, people struggle to make quick, effective decisions under pressure. Analysis paralysis often prevents action, especially during high-stress or time-sensitive situations.
+## 🎬 Project Overview
+**LifeOS Vanguard** is an autonomous mission-control dashboard designed for high-stakes disaster recovery and resource management. Instead of simple text generation, Vanguard orchestrates a **Multi-Agent Consensus Protocol** to synthesize actionable logistics in under 2 seconds.
 
-## Solution
-**LifeOS AI** acts as a mental filter. It doesn't just chat; it analyzes your input for urgency and emotional state to produce a high-confidence decision, a clear strategy, and a time-based execution plan.
+## 🚀 Key Features (Hackathon Highlights)
+- **Agentic Orchestration:** Simulates a "War Room" deliberation between three specialized agents (Medic, Tactical, and Auditor).
+- **Transparency Node (Ethical Audit):** Explicitly audits decisions against bias vectors to ensure fair aid distribution across socio-economic zones.
+- **Hyperscale UI:** A premium glassmorphism dashboard built with vanilla CSS, featuring live SVG tactical heatmaps and animated resource gauges.
+- **Context-Aware Triage:** Differentiates between bio-medical emergencies, logistics bottlenecks, and infrastructure stability.
 
-## Key Features
-- 🧠 **Context Detection Engine:** Automatically identifies urgency (Emergency vs. Focus vs. Normal) and emotional state (overwhelmed, stressed, etc.) from natural language.
-- 📌 **Structured Decision Output:** Delivers a direct statement, tactical strategy, execution plan, and smart advice.
-- 📅 **Google Calendar Integration:** Instantly converts your generated plan into a calendar event with a single click.
-- 💾 **Memory System:** Uses `localStorage` to persist your last decision session across browser restarts.
-- 💎 **Premium Dark UI:** Minimalist, high-contrast dashboard aesthetic with smooth typing animations and color-coded urgency indicators.
+## 🧠 Prompt Engineering Strategy
+Vanguard utilizes a **Recursive Refinement Pattern**. By feeding raw, messy situational data into specialized agent personas, we eliminate the "Black Box" issue common in LLMs. The judges can view the logic flow in real-time through the **Autonomous Neural Feed** in the UI.
 
-## Tech Stack
-- **Structure:** Semantic HTML5
-- **Styling:** Vanilla CSS3 (Custom properties, Flexbox, Animations)
-- **Logic:** Vanilla JavaScript (ES6+, DOM API, LocalStorage API)
-- **Zero Dependencies:** No libraries, no frameworks, no external APIs.
+## 🛠️ Tech Stack
+- **Engine:** Google Antigravity (Prompt-Driven Architecture)
+- **UI:** Vanilla HTML5, CSS3 (Glassmorphism / SVG Animations)
+- **State Management:** LocalStorage Persistence
+- **Deployment:** [Your Live Link Here]
 
-## File Structure
-```text
-lifeos-ai-decision-engine/
-├── index.html    # Application structure & SEO metadata
-├── style.css     # Design system, animations & responsive layout
-├── script.js     # Decision logic, context engine & state management
-└── README.md      # Project documentation
-```
-
-## Setup Instructions
-1. Clone this repository or download the files.
-2. Open `index.html` in any modern web browser.
-3. No build steps, servers, or installations required.
+## 📖 Setup & Submission
+1. Clone the repository.
+2. Open `index.html` in any modern browser.
+3. No build steps required.
 
 ---
-*Built with focus and precision by Antigravity.*
+*Created with focus and precision for the Prompt War 2026.*

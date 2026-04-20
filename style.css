@@ -19,10 +19,10 @@ body { top: 0px !important; }
     --primary: #8B5CF6;
     --primary-glow: rgba(139, 92, 246, 0.4);
     --text: #F8FAFC;
-    --text-dim: #94A3B8;
-    --text-muted: #64748B;
+    --text-dim: #cbd5e1;
+    --text-muted: #94a3b8;
     --accent: #10B981;
-    --border: rgba(255, 255, 255, 0.08);
+    --border: rgba(255, 255, 255, 0.15);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }

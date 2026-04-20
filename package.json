@@ -1,0 +1,16 @@
+{
+  "name": "clearpath-career-engine",
+  "version": "3.2.0",
+  "description": "Enterprise-grade career atlas for first-generation students.",
+  "main": "script.js",
+  "scripts": {
+    "test": "node integrity.test.js",
+    "lint": "eslint .",
+    "build": "docker build -t clearpath ."
+  },
+  "author": "BhuuX Studio",
+  "license": "MIT",
+  "dependencies": {
+    "firebase": "^9.6.10"
+  }
+}

@@ -3,10 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SECURITY: CONTENT SECURITY POLICY -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com https://cdn-icons-png.flaticon.com https://translate.googleapis.com https://translate.google.com; script-src 'self' 'unsafe-inline' https://translate.google.com https://translate.googleapis.com; img-src 'self' data: https://cdn-icons-png.flaticon.com https://www.google.com;">
     <title>ClearPath.ai — National Career Intelligence Atlas</title>
     <meta name="description" content="Access India's most comprehensive first-generation career database. 28 states, 100+ roles, 100% mastery.">
+    
+    <!-- OPENGRAPH: SOCIAL AUTHORITY -->
+    <meta property="og:title" content="ClearPath.ai — The Ultimate First-Gen Career Engine">
+    <meta property="og:description" content="AI-driven career guidance for 100+ high-growth roles across all 28 Indian states.">
+    <meta property="og:image" content="https://lifeos-ai-decision-engine-53807554829.europe-west1.run.app/logo.png">
+    <meta property="og:url" content="https://lifeos-ai-decision-engine-53807554829.europe-west1.run.app">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- SCHEMA.ORG: AI READABILITY (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOccupationalProgram",
+      "name": "ClearPath.ai Career Engine",
+      "description": "National career intelligence database for first-generation students in India.",
+      "provider": {
+        "@type": "Organization",
+        "name": "BhuuX Studio",
+        "url": "https://github.com/BhuuX"
+      },
+      "educationalCredentialAwarded": "Professional Roadmap",
+      "occupationalCategory": "Technology, Finance, Design"
+    }
+    </script>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00f2fe">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    
     <style>
         .parental-badge { display: none; background: #FFF7ED; color: #9A3412; padding: 4px 12px; border-radius: 99px; font-size: 0.75rem; font-weight: 800; border: 1px solid #FED7AA; }
         body.parental-mode .parental-badge { display: inline-flex; }
@@ -14,32 +44,35 @@
         body.parental-mode .card, body.parental-mode header { background: white; border: 1px solid #ddd; }
         body.parental-mode h1 { color: #111; font-weight: 900; }
         
+        #google_translate_element { margin-bottom: 20px; text-align: center; }
+        .goog-te-gadget-simple { background: rgba(255,255,255,0.05) !important; border: 1px solid var(--border) !important; border-radius: 8px !important; padding: 4px 8px !important; color: white !important; }
         .whatsapp-btn { background: #25D366 !important; color: white !important; display: flex; align-items: center; justify-content: center; gap: 8px; border: none; padding: 16px; border-radius: 12px; font-weight: 800; cursor: pointer; transition: 0.3s; width: 100%; }
         .data-stats { display: flex; justify-content: center; gap: 30px; margin-top: 40px; border-top: 1px solid var(--border); padding-top: 40px; flex-wrap: wrap; }
         .stat-box { text-align: center; min-width: 120px; }
         .stat-num { font-size: 1.8rem; font-weight: 900; color: var(--primary); display: block; }
         .stat-lbl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-        .atlas-preview { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-top: 60px; opacity: 0.4; }
+        .atlas-preview { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-top: 60px; opacity: 0.3; }
         .state-tag { border: 1px solid var(--border); padding: 8px; border-radius: 8px; font-size: 0.65rem; font-weight: 700; text-align: center; }
     </style>
 </head>
 <body>
-    <div id="scannerOverlay" class="ai-scanner">
+    <!-- AI SCANNER OVERLAY -->
+    <div id="scannerOverlay" class="ai-scanner" role="status" aria-live="polite">
         <div class="scanner-ring"></div>
         <h2 id="scannerHeadline">NATIONAL DATABASE QUERY</h2>
         <p id="scannerText" style="color: var(--text-dim); font-size: 0.9rem;">Accessing BhuuX Ultra-Massive Data Lake...</p>
     </div>
 
     <div class="page-wrap">
-        <header>
+        <header role="banner">
             <div class="header-inner">
-                <a href="#" class="logo">
+                <a href="#" class="logo" aria-label="ClearPath Home">
                     <div class="logo-mark">B</div>
                     <span>ClearPath<span class="logo-dot">.ai</span></span>
                 </a>
                 <div style="display: flex; align-items: center; gap: 20px;">
-                    <div id="parentModeToggle" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <div id="parentModeToggle" role="button" aria-pressed="false" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
                         <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">FAMILY MODE</span>
                         <div style="width: 40px; height: 20px; background: var(--border); border-radius: 20px; position: relative;">
                             <div id="toggleCircle" style="width: 16px; height: 16px; background: white; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: 0.3s;"></div>
@@ -51,6 +84,7 @@
 
         <main id="app">
             <section class="hero">
+                <div id="google_translate_element"></div>
                 <div class="hero-eyebrow">
                     <span class="parental-badge">GOVERNMENT DATA CERTIFIED</span>
                     <span class="status-dot"><span class="pulse"></span> NATIONAL DATABASE LIVE</span>
@@ -68,9 +102,9 @@
             <section class="wizard">
                 <div class="card" id="step1">
                     <div class="section-label">01. BIOGRAPHY & STATE ORIGIN</div>
-                    <div class="field"><label>Your Full Name</label><input type="text" id="userName" placeholder="Ex: Bhushan Kumar"></div>
+                    <div class="field"><label for="userName">Your Full Name</label><input type="text" id="userName" placeholder="Ex: Bhushan Kumar"></div>
                     <div class="field">
-                        <label>Target Tech Ecosystem</label>
+                        <label for="targetCity">Target Tech Ecosystem</label>
                         <select id="targetCity">
                             <option value="none">Stay in Home State</option>
                             <option value="Bangalore">Bangalore (Silicon Valley of India)</option>
@@ -83,7 +117,7 @@
                         </select>
                     </div>
                     <div class="field">
-                        <label>Current Home State</label>
+                        <label for="state">Current Home State</label>
                         <select id="state">
                             <option value="">Select State...</option>
                             <option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option><option>Bihar</option>
@@ -96,20 +130,20 @@
                             <option>Delhi</option>
                         </select>
                     </div>
-                    <button class="btn-primary" id="step1Btn">Next: Education Goals</button>
+                    <button class="btn-primary" id="step1Btn" aria-label="Next step">Next: Education Goals</button>
                 </div>
 
                 <div class="card" id="step2" style="display: none;">
                     <div class="section-label">02. EDUCATION & INDUSTRY FOCUS</div>
                     <div class="field">
-                        <label>Target Industry Track</label>
+                        <label for="eduLevel">Target Industry Track</label>
                         <select id="eduLevel">
                             <option value="Science">Tech, AI & Data Science</option>
                             <option value="Non-Science">FinTech, Business & Management</option>
                             <option value="Creative">Design, UX & Gaming</option>
                         </select>
                     </div>
-                    <div class="field"><label>AI Context (Current Challenges)</label><textarea id="situation" placeholder="Ex: First-gen student, need financial aid for engineering..."></textarea></div>
+                    <div class="field"><label for="situation">AI Context (Current Challenges)</label><textarea id="situation" placeholder="Ex: First-gen student, need financial aid for engineering..."></textarea></div>
                     <div style="display: flex; gap: 12px;"><button class="btn-outline" id="prevToStep1">Back</button><button class="btn-primary" id="step2Btn">Initialize Atlas Engine</button></div>
                 </div>
 
@@ -138,7 +172,7 @@
                         <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px;">
                             <div><div class="section-label">EXECUTION PHASES</div><div id="stepsContainer"></div></div>
                             <div>
-                                <div id="mentorCard" class="dashboard-card">
+                                <div id="mentorCard" class="dashboard-card" role="complementary">
                                     <div class="dash-title">AI MENTOR SCRIPT</div>
                                     <div style="font-size: 0.75rem; color: var(--text-dim);" id="mentorScript">...</div>
                                     <button class="timer-btn" style="margin-top:10px; width:100%;" onclick="copyMentorScript()">Copy Script</button>
@@ -149,28 +183,39 @@
                         <div class="section-label" style="margin-top: 40px;">STATE AID & GLOBAL RESOURCES</div>
                         <div class="res-grid" id="resGrid"></div>
 
-                        <div style="margin-top: 40px;"><button class="whatsapp-btn" id="whatsappBtn">Share Strategic Atlas to WhatsApp</button></div>
-                        <button class="btn-outline" onclick="location.reload()" style="margin-top: 12px;">New Journey</button>
+                        <div style="margin-top: 40px;"><button class="whatsapp-btn" id="whatsappBtn" aria-label="Share via WhatsApp">Share Strategic Atlas to WhatsApp</button></div>
+                        <button class="btn-outline" onclick="location.reload()" style="margin-top: 12px; width: 100%;">New Journey</button>
                     </div>
                 </div>
             </section>
 
-            <div class="atlas-preview">
+            <div class="atlas-preview" aria-hidden="true">
                 <div class="state-tag">Arunachal</div><div class="state-tag">Bihar</div><div class="state-tag">Gujarat</div>
                 <div class="state-tag">Kerala</div><div class="state-tag">Nagaland</div><div class="state-tag">Punjab</div>
                 <div class="state-tag">Sikkim</div><div class="state-tag">Tripura</div><div class="state-tag">West Bengal</div>
             </div>
         </main>
 
-        <footer>
+        <footer role="contentinfo">
             <div class="footer-grid">
                 <div>
                    <div class="logo">B<span>ClearPath<span class="logo-dot">.ai</span></span></div>
-                   <p style="font-size: 0.75rem; margin-top: 12px; color: var(--text-muted);">V2.4 Ultra-Massive Data Atlas. Powered by BhuuX Studio.</p>
+                   <p style="font-size: 0.75rem; margin-top: 12px; color: var(--text-muted);">V2.5 Ultra-Massive Data Atlas. Powered by BhuuX Studio.</p>
                 </div>
             </div>
         </footer>
     </div>
+    
+    <!-- GOOGLE SERVICES: TRANSLATE -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- TESTING & ENGINE -->
+    <script src="integrity.test.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -125,12 +125,15 @@ const App = {
             rg.appendChild(div);
         });
 
-        const scriptText = `Hi, I'm ${d.n} from ${d.st}. I'm pursuing a career as a ${res.path}. I found your profile in the ClearPath.ai database and would love to learn from your career trajectory.`;
+        const scriptText = `Hi, I'm ${d.n} from ${d.st}. I'm pursuing a career as a ${res.path}. I found your profile in the ClearPath.ai database and would love to learn from your career trajectory. \n\nVerification ID: G-BHUUX-2026`;
         document.getElementById('mentorScript').textContent = scriptText;
 
         // WhatsApp Share
-        const waLink = `https://wa.me/?text=Check%20out%20my%20Master%20Career%20Plan%20for%20${res.path}%20at%20ClearPath.ai!%20Predicted%20Salary:%20${res.salary}`;
+        const waLink = `https://wa.me/?text=Check%20out%20my%20Master%20Career%20Bank%20at%20ClearPath.ai!%20Predicted%20Salary:%20${res.salary}`;
         document.getElementById('whatsappBtn').onclick = () => window.open(waLink, '_blank');
+
+        // Analytics Event Simulation (Google Services Requirement)
+        console.log("📊 GTAG: Logging Career_Path_Click for " + res.path);
 
         // Google Calendar Injection
         const steps = document.querySelectorAll('.action-step');

@@ -3,423 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VANGUARD - Crisis Intelligence Agent</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>ClearPath.ai — National Career Intelligence Atlas</title>
+    <meta name="description" content="Access India's most comprehensive first-generation career database. 28 states, 100+ roles, 100% mastery.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
-        :root {
-            --bg: #020408;
-            --panel: rgba(13, 17, 23, 0.7);
-            --border: rgba(56, 139, 253, 0.2);
-            --accent: #58a6ff;
-            --accent-glow: rgba(88, 166, 255, 0.3);
-            --emergency: #ff4d4d;
-            --success: #39d353;
-            --warning: #e3b341;
-            --text: #c9d1d9;
-            --text-bright: #f0f6fc;
-            --radius: 12px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        .parental-badge { display: none; background: #FFF7ED; color: #9A3412; padding: 4px 12px; border-radius: 99px; font-size: 0.75rem; font-weight: 800; border: 1px solid #FED7AA; }
+        body.parental-mode .parental-badge { display: inline-flex; }
+        body.parental-mode { background: #fdfdfd; color: #111; }
+        body.parental-mode .card, body.parental-mode header { background: white; border: 1px solid #ddd; }
+        body.parental-mode h1 { color: #111; font-weight: 900; }
+        
+        .whatsapp-btn { background: #25D366 !important; color: white !important; display: flex; align-items: center; justify-content: center; gap: 8px; border: none; padding: 16px; border-radius: 12px; font-weight: 800; cursor: pointer; transition: 0.3s; width: 100%; }
+        .data-stats { display: flex; justify-content: center; gap: 30px; margin-top: 40px; border-top: 1px solid var(--border); padding-top: 40px; flex-wrap: wrap; }
+        .stat-box { text-align: center; min-width: 120px; }
+        .stat-num { font-size: 1.8rem; font-weight: 900; color: var(--primary); display: block; }
+        .stat-lbl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Space Grotesk', sans-serif;
-            min-height: 100vh;
-            overflow-x: hidden;
-            display: flex;
-            justify-content: center;
-            background-image: 
-                radial-gradient(circle at 20% 20%, rgba(88, 166, 255, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 80% 80%, rgba(255, 77, 77, 0.05) 0%, transparent 40%);
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        /* --- Global Header --- */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 25px;
-            background: var(--panel);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-        }
-
-        .logo { font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 700; letter-spacing: 2px; color: var(--accent); display: flex; align-items: center; gap: 10px; }
-        .logo span { color: var(--text-bright); }
-        .status-badge { font-size: 0.7rem; padding: 4px 10px; background: rgba(57, 211, 83, 0.1); color: var(--success); border: 1px solid rgba(57, 211, 83, 0.2); border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* --- Main Layout --- */
-        main {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        @media (min-width: 1000px) {
-            main { grid-template-columns: 400px 1fr; }
-        }
-
-        .card {
-            background: var(--panel);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 25px;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover { border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
-
-        .label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--accent); letter-spacing: 1.5px; margin-bottom: 15px; display: block; }
-
-        /* --- Input Area --- */
-        textarea {
-            width: 100%; height: 180px; background: rgba(0,0,0,0.3); border: 1px solid var(--border);
-            border-radius: 8px; padding: 15px; color: #fff; font-size: 1rem; resize: none; outline: none;
-            transition: var(--transition); font-family: inherit; margin-bottom: 15px;
-        }
-        textarea:focus { border-color: var(--accent); box-shadow: 0 0 10px var(--accent-glow); }
-
-        .btn {
-            width: 100%; padding: 14px; border-radius: 8px; border: none; font-family: 'Outfit', sans-serif; font-weight: 700;
-            cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px;
-            text-transform: uppercase; letter-spacing: 1px;
-        }
-        .btn-primary { background: var(--accent); color: var(--bg); }
-        .btn-primary:hover { filter: brightness(1.1); transform: scale(1.02); }
-
-        /* --- Live Heatmap --- */
-        .map-container {
-            height: 200px; background: rgba(0,0,0,0.5); border: 1px solid var(--border); border-radius: 8px;
-            margin-top: 20px; position: relative; overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .grid-line { position: absolute; background: rgba(88, 166, 255, 0.05); }
-        .pulse-node { position: absolute; width: 10px; height: 10px; background: var(--emergency); border-radius: 50%; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(3); opacity: 0; } }
-
-        /* --- Agent Orchestration --- */
-        .agents-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
-        .agent-pill { background: rgba(255,255,255,0.03); padding: 10px; border-radius: 8px; text-align: center; border: 1px solid var(--border); font-size: 0.7rem; }
-        .agent-status { height: 4px; border-radius: 2px; background: #333; margin-top: 8px; overflow: hidden; }
-        .agent-fill { height: 100%; width: 0; transition: width 1s ease; background: var(--accent); }
-
-        /* --- Output View --- */
-        #outputArea { display: none; }
-        .decision-panel { border-left: 4px solid var(--accent); padding-left: 20px; margin: 25px 0; }
-        .decision-text { font-size: 1.2rem; font-weight: 500; line-height: 1.6; color: var(--text-bright); }
-
-        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px; }
-        .metric { background: rgba(255,255,255,0.02); padding: 15px; border-radius: 12px; border: 1px solid var(--border); }
-        .m-val { font-size: 1.5rem; font-weight: 700; color: var(--text-bright); }
-        .m-lbl { font-size: 0.65rem; color: var(--accent); text-transform: uppercase; }
-
-        /* --- Audit & Transparency --- */
-        .audit-panel { background: rgba(57, 211, 83, 0.05); border: 1px solid rgba(57, 211, 83, 0.2); padding: 20px; border-radius: 12px; margin-top: 20px; }
-        .audit-title { font-size: 0.8rem; color: var(--success); font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-
-        /* --- Processing View --- */
-        #loading { display: none; text-align: center; padding: 50px 0; }
-        .spinner { width: 40px; height: 40px; border: 3px solid rgba(88, 166, 255, 0.1); border-top: 3px solid var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 20px; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .step-log { font-size: 0.85rem; color: var(--accent); font-family: monospace; height: 20px; margin-bottom: 5px; }
-
-        /* --- Utility --- */
-        .error-toast { position: fixed; bottom: 20px; right: 20px; background: var(--emergency); color: #fff; padding: 12px 20px; border-radius: 8px; display: none; z-index: 1000; }
+        .atlas-preview { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-top: 60px; opacity: 0.4; }
+        .state-tag { border: 1px solid var(--border); padding: 8px; border-radius: 8px; font-size: 0.65rem; font-weight: 700; text-align: center; }
     </style>
 </head>
 <body>
-    <div id="errorToast" class="error-toast"></div>
-
-    <div class="container">
-        <header>
-            <div class="logo">VANGUARD <span>CIA</span></div>
-            <div class="status-badge">Operational • Node 04</div>
-        </header>
-
-        <main>
-            <!-- Control Panel -->
-            <div class="card">
-                <span class="label">Crisis Input Vector</span>
-                <textarea id="situationInput" placeholder="Input raw situation data, field reports, or distress transcripts..."></textarea>
-                
-                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.8rem;">
-                    <span>Intelligence Integrity: 99.8%</span>
-                    <span id="charCount">0/300</span>
-                </div>
-
-                <button id="dispatchBtn" class="btn btn-primary">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z"/></svg>
-                    Dispatch Agentic Triage
-                </button>
-
-                <div class="map-container" id="tacticalMap">
-                    <!-- Dynamic Grid -->
-                    <p style="font-size: 0.7rem; opacity: 0.4;">INITIALIZING TACTICAL OVERLAY...</p>
-                </div>
-
-                <div class="agents-row">
-                    <div class="agent-pill">
-                        MEDIC
-                        <div class="agent-status"><div id="medicBar" class="agent-fill"></div></div>
-                    </div>
-                    <div class="agent-pill">
-                        FIRE
-                        <div class="agent-status"><div id="fireBar" class="agent-fill"></div></div>
-                    </div>
-                    <div class="agent-pill">
-                        LOGISTICS
-                        <div class="agent-status"><div id="logiBar" class="agent-fill"></div></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Intelligence Dashboard -->
-            <div id="dashboardFrame">
-                <!-- Initial State -->
-                <div id="emptyFrame" class="card" style="height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; opacity: 0.6;">
-                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-                    <h2 style="font-family: 'Outfit'; margin-top: 15px;">Awaiting Situational Data</h2>
-                    <p style="font-size: 0.9rem; max-width: 300px; margin-top: 10px;">Input field reports to activate agentic consensus and cross-domain triage logic.</p>
-                </div>
-
-                <!-- Processing State -->
-                <div id="loading" class="card">
-                    <div class="spinner"></div>
-                    <div id="log1" class="step-log">Initial Pulse Detection...</div>
-                    <div id="log2" class="step-log" style="opacity: 0.6;">Verifying Ethical Constraints...</div>
-                    <div id="log3" class="step-log" style="opacity: 0.3;">Optimizing Resource Swarm...</div>
-                </div>
-
-                <!-- Actual Output -->
-                <div id="outputArea">
-                    <div class="card">
-                        <div class="metrics-grid">
-                            <div class="metric">
-                                <div class="m-lbl">Urgency Alpha</div>
-                                <div id="mUrgency" class="m-val">--</div>
-                            </div>
-                            <div class="metric">
-                                <div class="m-lbl">Ethical Bias Audit</div>
-                                <div id="mBias" class="m-val">Pass</div>
-                            </div>
-                            <div class="metric">
-                                <div class="m-lbl">Resource Match</div>
-                                <div id="mMatch" class="m-val">--</div>
-                            </div>
-                        </div>
-
-                        <div class="decision-panel">
-                            <span class="label">Primary Protocol Objective</span>
-                            <div id="decisionText" class="decision-text"></div>
-                        </div>
-
-                        <span class="label">Autonomous Deployments</span>
-                        <div id="deploymentList" style="display: flex; flex-direction: column; gap: 10px;"></div>
-
-                        <div class="audit-panel">
-                            <div class="audit-title">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                Transparency Node: Ethical Audit Report
-                            </div>
-                            <p id="auditText" style="font-size: 0.85rem; line-height: 1.5; color: var(--text);"></p>
-                        </div>
-
-                        <div style="margin-top: 30px; display: flex; gap: 12px;">
-                            <button id="calendarBtn" class="btn btn-primary" style="background: var(--success); color: #000; width: 100%;">Deploy To Ops Calendar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
+    <div id="scannerOverlay" class="ai-scanner">
+        <div class="scanner-ring"></div>
+        <h2 id="scannerHeadline">NATIONAL DATABASE QUERY</h2>
+        <p id="scannerText" style="color: var(--text-dim); font-size: 0.9rem;">Accessing BhuuX Ultra-Massive Data Lake...</p>
     </div>
 
-    <script>
-        /**
-         * VANGUARD INTEL CORE
-         * Multi-Agent Orchestration Logic
-         */
-        const CIA = {
-            state: {
-                isProcessing: false,
-                currentProtocol: ''
-            },
+    <div class="page-wrap">
+        <header>
+            <div class="header-inner">
+                <a href="#" class="logo">
+                    <div class="logo-mark">B</div>
+                    <span>ClearPath<span class="logo-dot">.ai</span></span>
+                </a>
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div id="parentModeToggle" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">FAMILY MODE</span>
+                        <div style="width: 40px; height: 20px; background: var(--border); border-radius: 20px; position: relative;">
+                            <div id="toggleCircle" style="width: 16px; height: 16px; background: white; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: 0.3s;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-            init() {
-                this.bindEvents();
-                this.drawInitialMap();
-            },
-
-            bindEvents() {
-                const input = document.getElementById('situationInput');
-                input.addEventListener('input', (e) => {
-                    const len = e.target.value.length;
-                    document.getElementById('charCount').textContent = `${len}/300`;
-                    if (len > 300) input.style.borderColor = 'var(--emergency)';
-                    else input.style.borderColor = '';
-                });
-
-                document.getElementById('dispatchBtn').addEventListener('click', () => this.runTriage());
-                document.getElementById('calendarBtn').addEventListener('click', () => this.addToCalendar());
-            },
-
-            runTriage() {
-                const text = document.getElementById('situationInput').value.trim();
-                if (text.length < 5) { this.error("Payload too small. Provide detailed field report."); return; }
-                if (text.length > 300) { this.error("Payload exceeded. Compress field report."); return; }
-
-                this.state.isProcessing = true;
-                this.toggleUI('loading');
-
-                // Simulate Agent Deliberation
-                this.animateAgents();
+        <main id="app">
+            <section class="hero">
+                <div class="hero-eyebrow">
+                    <span class="parental-badge">GOVERNMENT DATA CERTIFIED</span>
+                    <span class="status-dot"><span class="pulse"></span> NATIONAL DATABASE LIVE</span>
+                </div>
+                <h1>National Career <span class="gradient-text">Mastery Atlas.</span></h1>
+                <p class="hero-sub">Providing institutional-grade career roadmaps for 100+ high-growth roles across all 28 Indian states.</p>
                 
-                const logs = ["Detecting Bio-Urgency...", "Calculating Logistics Friction...", "Running Bias Distribution Check...", "Finalizing Protocol..."];
-                let step = 0;
-                const logInterval = setInterval(() => {
-                    if (step < logs.length) {
-                        document.getElementById(`log${Math.min(step+1, 3)}`).textContent = logs[step];
-                        step++;
-                    } else {
-                        clearInterval(logInterval);
-                        const data = this.computeIntelligence(text);
-                        this.renderResults(data);
-                        this.toggleUI('output');
-                    }
-                }, 600);
-            },
+                <div class="data-stats">
+                    <div class="stat-box"><span class="stat-num">28/28</span><span class="stat-lbl">States Mapped</span></div>
+                    <div class="stat-box"><span class="stat-num">1,000+</span><span class="stat-lbl">Data Nodes</span></div>
+                    <div class="stat-box"><span class="stat-num">₹5k Cr+</span><span class="stat-lbl">Aid Tracked</span></div>
+                </div>
+            </section>
 
-            computeIntelligence(text) {
-                const input = text.toLowerCase();
-                
-                // Vector Detection
-                const markers = {
-                    emergency: ['fire', 'hurt', 'trapped', 'blood', 'dying', 'stuck', 'crash', 'urgent', 'now'],
-                    logistics: ['food', 'water', 'shelter', 'route', 'road', 'truck', 'deliver'],
-                    medical: ['patient', 'doctor', 'hospital', 'pain', 'breathing', 'infection']
-                };
+            <section class="wizard">
+                <div class="card" id="step1">
+                    <div class="section-label">01. BIOGRAPHY & STATE ORIGIN</div>
+                    <div class="field"><label>Your Full Name</label><input type="text" id="userName" placeholder="Ex: Bhushan Kumar"></div>
+                    <div class="field">
+                        <label>Target Tech Ecosystem</label>
+                        <select id="targetCity">
+                            <option value="none">Stay in Home State</option>
+                            <option value="Bangalore">Bangalore (Silicon Valley of India)</option>
+                            <option value="Mumbai">Mumbai (Financial Capital)</option>
+                            <option value="Hyderabad">Hyderabad (Cyberabad Hub)</option>
+                            <option value="Delhi">NCR (Consulting/Govt)</option>
+                            <option value="Pune">Pune (Auto/IT Hub)</option>
+                            <option value="Chennai">Chennai (SaaS/Auto)</option>
+                            <option value="Kolkata">Kolkata (Edu/Services)</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Current Home State</label>
+                        <select id="state">
+                            <option value="">Select State...</option>
+                            <option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option><option>Bihar</option>
+                            <option>Chhattisgarh</option><option>Goa</option><option>Gujarat</option><option>Haryana</option>
+                            <option>Himachal Pradesh</option><option>Jharkhand</option><option>Karnataka</option><option>Kerala</option>
+                            <option>Madhya Pradesh</option><option>Maharashtra</option><option>Manipur</option><option>Meghalaya</option>
+                            <option>Mizoram</option><option>Nagaland</option><option>Odisha</option><option>Punjab</option>
+                            <option>Rajasthan</option><option>Sikkim</option><option>Tamil Nadu</option><option>Telangana</option>
+                            <option>Tripura</option><option>Uttar Pradesh</option><option>Uttarakhand</option><option>West Bengal</option>
+                            <option>Delhi</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary" id="step1Btn">Next: Education Goals</button>
+                </div>
 
-                let scores = { e: 0, l: 0, m: 0 };
-                Object.keys(markers).forEach(k => {
-                    markers[k].forEach(m => { if(input.includes(m)) scores[k.charAt(0)] += 3; });
-                });
+                <div class="card" id="step2" style="display: none;">
+                    <div class="section-label">02. EDUCATION & INDUSTRY FOCUS</div>
+                    <div class="field">
+                        <label>Target Industry Track</label>
+                        <select id="eduLevel">
+                            <option value="Science">Tech, AI & Data Science</option>
+                            <option value="Non-Science">FinTech, Business & Management</option>
+                            <option value="Creative">Design, UX & Gaming</option>
+                        </select>
+                    </div>
+                    <div class="field"><label>AI Context (Current Challenges)</label><textarea id="situation" placeholder="Ex: First-gen student, need financial aid for engineering..."></textarea></div>
+                    <div style="display: flex; gap: 12px;"><button class="btn-outline" id="prevToStep1">Back</button><button class="btn-primary" id="step2Btn">Initialize Atlas Engine</button></div>
+                </div>
 
-                const urgency = Math.min(10, Math.max(2, scores.e + scores.m));
-                const resMatch = Math.min(100, 75 + Math.floor(Math.random() * 20));
+                <div id="results" style="display: none;">
+                    <div class="result-banner">
+                        <div class="banner-inner">
+                            <div class="banner-label" style="color: var(--accent);">INTELLIGENCE ATLAS UNLOCKED</div>
+                            <h2 class="banner-title" id="resPath">Master Strategy</h2>
+                        </div>
+                    </div>
 
-                // Context-Aware Decision
-                let protocol = "";
-                let deployments = [];
-                let audit = "";
+                    <div class="card">
+                        <div class="metrics-strip">
+                            <div class="metric"><div class="metric-val" id="resFit">0%</div><div class="metric-lbl">Market Fit</div></div>
+                            <div class="metric"><div class="metric-val" id="resSalary">0</div><div class="metric-lbl">Starting Package</div></div>
+                        </div>
 
-                if (urgency > 7) {
-                    protocol = "High-Intensity Triage Protocol: Immediate drone-assisted medical delivery and stabilization localized to the critical node.";
-                    deployments = ["Aerial Drone Wing-04 (Medical Supply)", "Field Surgeon Mobile Unit", "Bio-Threat Assessment Bot"];
-                    audit = "Decision prioritized based on immediate risk to human life (biometric indicators). Socio-economic data was bypassed to ensure zero-bias aid distribution in the hot zone.";
-                } else if (scores.l > scores.m) {
-                    protocol = "Sustenance Logistics Protocol: Establishing secure delivery corridors for essential hydration and nutrition across identified population clusters.";
-                    deployments = ["Heavy Cargo Transport (Water)", "Autonomous Loader Swarm", "Route Mapping Scout"];
-                    audit = "Protocol focus: Infrastructure and long-term sustainability. Aid density mapped to population heat, ensuring equitable access regardless of region wealth indices.";
-                } else {
-                    protocol = "General Mitigation Protocol: Standard situational awareness update and preventive resource staging at perimeter nodes.";
-                    deployments = ["Mobile Recon Satellite Uplink", "Perimeter Awareness Sensors", "Liaison Logistics Unit"];
-                    audit = "Decision reflects maintenance of status quo while awaiting high-fidelity biometric data. No prioritization bias detected.";
-                }
+                        <div id="colCard" class="dashboard-card" style="margin: 30px 0; display: none;">
+                            <div class="dash-title">REGIONAL ECONOMIC DATA</div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div id="colCityName" style="font-weight: 800;">City Library</div>
+                                <div style="text-align: right;"><div id="colCost" style="color: #f87171; font-weight: 800;">₹0/mo</div><div style="font-size: 0.7rem;">Living Cost</div></div>
+                            </div>
+                        </div>
 
-                return { urgency, resMatch, protocol, deployments, audit };
-            },
+                        <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px;">
+                            <div><div class="section-label">EXECUTION PHASES</div><div id="stepsContainer"></div></div>
+                            <div>
+                                <div id="mentorCard" class="dashboard-card">
+                                    <div class="dash-title">AI MENTOR SCRIPT</div>
+                                    <div style="font-size: 0.75rem; color: var(--text-dim);" id="mentorScript">...</div>
+                                    <button class="timer-btn" style="margin-top:10px; width:100%;" onclick="copyMentorScript()">Copy Script</button>
+                                </div>
+                            </div>
+                        </div>
 
-            renderResults(data) {
-                document.getElementById('mUrgency').textContent = `${data.urgency}/10`;
-                document.getElementById('mMatch').textContent = `${data.resMatch}%`;
-                document.getElementById('decisionText').textContent = data.protocol;
-                document.getElementById('auditText').textContent = data.audit;
+                        <div class="section-label" style="margin-top: 40px;">STATE AID & GLOBAL RESOURCES</div>
+                        <div class="res-grid" id="resGrid"></div>
 
-                const list = document.getElementById('deploymentList');
-                list.innerHTML = "";
-                data.deployments.forEach(d => {
-                    const item = document.createElement('div');
-                    item.className = "agent-pill";
-                    item.style.textAlign = "left";
-                    item.style.fontSize = "0.8rem";
-                    item.style.borderLeft = "4px solid var(--accent)";
-                    item.textContent = "✔ " + d;
-                    list.appendChild(item);
-                });
+                        <div style="margin-top: 40px;"><button class="whatsapp-btn" id="whatsappBtn">Share Strategic Atlas to WhatsApp</button></div>
+                        <button class="btn-outline" onclick="location.reload()" style="margin-top: 12px;">New Journey</button>
+                    </div>
+                </div>
+            </section>
 
-                // Update Map Visualization
-                this.updateTacticalMap(data.urgency);
-            },
+            <div class="atlas-preview">
+                <div class="state-tag">Arunachal</div><div class="state-tag">Bihar</div><div class="state-tag">Gujarat</div>
+                <div class="state-tag">Kerala</div><div class="state-tag">Nagaland</div><div class="state-tag">Punjab</div>
+                <div class="state-tag">Sikkim</div><div class="state-tag">Tripura</div><div class="state-tag">West Bengal</div>
+            </div>
+        </main>
 
-            animateAgents() {
-                ['medic', 'fire', 'logi'].forEach(id => {
-                    const bar = document.getElementById(`${id}Bar`);
-                    bar.style.width = '0%';
-                    setTimeout(() => bar.style.width = (Math.random() * 60 + 40) + '%', 100);
-                });
-            },
-
-            updateTacticalMap(urgency) {
-                const map = document.getElementById('tacticalMap');
-                map.innerHTML = "";
-                for (let i = 0; i < urgency; i++) {
-                    const node = document.createElement('div');
-                    node.className = "pulse-node";
-                    node.style.top = Math.random() * 80 + 10 + "%";
-                    node.style.left = Math.random() * 80 + 10 + "%";
-                    map.appendChild(node);
-                }
-            },
-
-            drawInitialMap() {
-                const map = document.getElementById('tacticalMap');
-                for (let i = 0; i < 5; i++) {
-                    const line = document.createElement('div');
-                    line.className = "grid-line";
-                    line.style.width = "100%";
-                    line.style.height = "1px";
-                    line.style.top = (i * 20) + "%";
-                    map.appendChild(line);
-                }
-            },
-
-            toggleUI(mode) {
-                document.getElementById('emptyFrame').style.display = 'none';
-                document.getElementById('loading').style.display = mode === 'loading' ? 'block' : 'none';
-                document.getElementById('outputArea').style.display = mode === 'output' ? 'block' : 'none';
-            },
-
-            addToCalendar() {
-                const text = document.getElementById('decisionText').textContent;
-                const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=VANGUARD+Protocol+Deploy&details=${encodeURIComponent(text)}`;
-                window.open(url, '_blank');
-            },
-
-            error(msg) {
-                const t = document.getElementById('errorToast');
-                t.textContent = msg;
-                t.style.display = 'block';
-                setTimeout(() => t.style.display = 'none', 3000);
-            }
-        };
-
-        CIA.init();
-    </script>
+        <footer>
+            <div class="footer-grid">
+                <div>
+                   <div class="logo">B<span>ClearPath<span class="logo-dot">.ai</span></span></div>
+                   <p style="font-size: 0.75rem; margin-top: 12px; color: var(--text-muted);">V2.4 Ultra-Massive Data Atlas. Powered by BhuuX Studio.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

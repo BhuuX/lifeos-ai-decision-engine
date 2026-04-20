@@ -5,6 +5,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Inter:wght@400;600;700&display=swap');
 
+/* GOOGLE TRANSLATE FIX & CLEANUP */
+.goog-te-banner-frame.skiptranslate, .goog-te-gadget-icon, .goog-te-gadget-simple img { display: none !important; }
+body { top: 0px !important; }
+.goog-te-menu-value:before { content: 'Language: '; font-size: 0.7rem; opacity: 0.5; }
+#goog-gt-tt { display: none !important; }
+.goog-te-balloon-frame { display: none !important; }
+.goog-text-highlight { background: none !important; box-shadow: none !important; }
+
 :root {
     --bg: #050505;
     --card-bg: rgba(20, 20, 20, 0.7);
